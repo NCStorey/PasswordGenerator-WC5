@@ -88,10 +88,29 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+//below chunk of code asks user to input how many charecters they need thier password to be.
+
+function randomIndex (charArray) {
+  Math.floor(math.random)}
+
+
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
+//below chunk of code asks user to input how many charecters they need thier password to be.
+let passwordlength = prompt("please enter desired length of password (10-64)")
+
+//if statement to ensure a number between 10 and 64 is given
+if (( passwordlength >= 10) && (passwordlength <= 64)){
+  alert("thank you you have chosen " + passwordlength)
+  }
+  else (alert("You have entered a value outside of the parameter 10-64. Please refresh and try again"))
+
 }
+
+getPasswordOptions()
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
