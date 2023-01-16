@@ -93,9 +93,10 @@ let lowerCaseConfirm = false
 let upperCaseConfirm = false
 let numericConfirm = false
 let specialCharactersConfirm = false
-let randomint = 0
-let password = 0
+let randomIntsArray = []
 let confirmArray = []
+let passwordArray = []
+
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -160,23 +161,27 @@ createConfirmArray (specialCharactersConfirm, specialCharacters)
 
 // Function for getting a random element from an array
 
-function getRandom (characonfirm, arr) {
+function getRandom () {
 
-  randomint = Math.floor(Math.random()*arr.length)
-  console.log(randomint)
+  
+  for (let i = 0; i < passwordLength; i++){
+  randomInt = (Math.floor(Math.random()*confirmArray.length))
+  
+  passwordArray.push(confirmArray[randomInt])
+
+  }
+  return;
 
 }
 
-
-confirmArray.forEach(getRandom)
+getRandom ()
 
 
 // Function to generate password with user input
 function generatePassword() {
-
-
-
-
+  
+  password = passwordArray.join("")
+  return password;
 }
 
 //dont touch below this line
