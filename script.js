@@ -188,7 +188,7 @@ function generatePassword() {
   return password;
 }
 
-//dont touch below this line
+//dont touch below this line - starter code
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
