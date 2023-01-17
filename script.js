@@ -88,6 +88,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+//Empty variables to store values 
 let passwordLength = 0
 let lowerCaseConfirm = false
 let upperCaseConfirm = false
@@ -98,33 +99,42 @@ let confirmArray = []
 let passwordArray = []
 
 
-// Function to prompt user for password options
+// Defining function to prompt user for password options.
 function getPasswordOptions() {
 
-//below is a prompt for password length
-passwordLength = prompt("please enter desired length of password (10-64)")
+  //below is a prompt for password length - selection stored in passwordLength variable.
+  passwordLength = prompt("please enter desired length of password (10-64)")
 
 
-//if statement to ensure a number between 10 and 64 is given
-if (( passwordLength >= 10) && (passwordLength <= 64)){
-  alert("thank you you have chosen a password length of " + passwordLength + " characters.\nNext you will be asked which characters you would like to include. Please confirm to *atleast* one option.")
+  //if statement to ensure a number between 10 and 64 is given
+  if (( passwordLength >= 10) && (passwordLength <= 64)){
   
-  lowerCaseConfirm = confirm("would you like lower case charaters included?")
-  upperCaseConfirm = confirm("would you like upper case charaters included?")
-  numericConfirm = confirm("would you like numerical charaters included?")
-  specialCharactersConfirm = confirm("would you like special charaters included?")}
+    //alert to display to user their choosen password length and also to ask them to choose *atleast* on of the 4 following confirms.
+    alert("thank you you have chosen a password length of " + passwordLength + " characters.\nNext you will be asked which characters you would like to include. There are 4 options. Please confirm to *atleast* one option.")
+  
+    //4 confirms for character selection. result of confirmation overwrites previous empty variables.
+    lowerCaseConfirm = confirm("would you like lower case charaters included?")
+    upperCaseConfirm = confirm("would you like upper case charaters included?")
+    numericConfirm = confirm("would you like numerical charaters included?")
+    specialCharactersConfirm = confirm("would you like special charaters included?")}
 
-  else (alert("You have entered a value outside of the parameter 10-64. Page will now refresh") (location.reload()))
+    //catch to ensure that a viable character length has been selected. if it hasnt a force refresh takes place so that the user can renter.
+    else (alert("You have entered a value outside of the parameter 10-64. Page will now refresh") (location.reload()))
 
   return;
 }
 
+//function to trigger password prompts/confirms
 getPasswordOptions()
 
+//as the length is entered into a prompt it is a string. this converts it to a number.
 parseInt(passwordLength)
 
+//if statement to ensure atleast one of the four options has been choosen. If they are all set to false then an alert will show with a force refresh.
 if ((lowerCaseConfirm === false) && (upperCaseConfirm === false) && (numericConfirm === false) && (specialCharactersConfirm === false)){
   (alert("You need to confirm atleast one option. Page will now refresh") (location.reload()))}
+  
+  //the else statement will run aslong as one confirm comes back as true. it displays and alert to show the user all of their choices.
   else (alert ("Thank you. Please see below for your selections.\n" + 
   "password length: " + passwordLength + " characters" + 
   "\nLowercase to be included?: " + lowerCaseConfirm +
@@ -134,39 +144,31 @@ if ((lowerCaseConfirm === false) && (upperCaseConfirm === false) && (numericConf
   "\nPlease click generate buttom below to see your new password."))
 
 
-
-//CHECKS
-console.log(passwordLength)
-console.log(lowerCaseConfirm)
-console.log(upperCaseConfirm)
-console.log(numericConfirm)
-console.log(specialCharactersConfirm)
-
-
+//based on the users selection a new array is made from charater types selected by the user.
 function createConfirmArray (charaConfirm, arr) {
   if (charaConfirm === true) {
     confirmArray = confirmArray.concat(arr)
   }
-
+  return;
 }
 
+//triggering functions to create the confirm array.
 createConfirmArray (lowerCaseConfirm, lowerCasedCharacters)
 createConfirmArray (upperCaseConfirm, upperCasedCharacters)
 createConfirmArray (numericConfirm, numericCharacters)
 createConfirmArray (specialCharactersConfirm, specialCharacters)
 
-//CHECK
-// console.log(confirmArray)
+
 
 
 // Function for getting a random element from an array
-
 function getRandom () {
 
-  
+  //forloop which will produce a random interger from 0-confirmArray length.
   for (let i = 0; i < passwordLength; i++){
   randomInt = (Math.floor(Math.random()*confirmArray.length))
   
+  //the random interger is then used as the index in the confirm array. The corresponding character is pushed to a the passwordArray.
   passwordArray.push(confirmArray[randomInt])
 
   }
@@ -174,12 +176,14 @@ function getRandom () {
 
 }
 
+//trigger of function to obtain random intergers and create the paasword array
 getRandom ()
 
 
 // Function to generate password with user input
 function generatePassword() {
   
+  //password is currently and array. "join" us used to remove the commas and make it one long string.
   password = passwordArray.join("")
   return password;
 }
@@ -198,3 +202,12 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+//CHECKS
+// console.log(passwordLength)
+// console.log(lowerCaseConfirm)
+// console.log(upperCaseConfirm)
+// console.log(numericConfirm)
+// console.log(specialCharactersConfirm)
+// console.log(confirmArray)
+// console.log(passwordArray)
